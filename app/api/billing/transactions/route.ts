@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseClient } from '@/lib/supabase';
 
+// Ensure this API route is always executed at request time (not during build)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const runtime = 'nodejs';
+
 export async function GET(req: NextRequest) {
   try {
     const supabase = getSupabaseClient();

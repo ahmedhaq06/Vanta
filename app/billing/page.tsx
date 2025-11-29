@@ -1,5 +1,9 @@
 'use client';
 
+// Prevent build-time data collection; this page fetches at runtime
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import { useState, useEffect } from 'react';
 import { ArrowLeft, CreditCard, Download, CheckCircle, XCircle, Clock } from 'lucide-react';
 
