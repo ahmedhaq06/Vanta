@@ -35,7 +35,7 @@ export default function SignupPage() {
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/onboarding`,
+        emailRedirectTo: `${window.location.origin}/dashboard`,
       },
     });
 
@@ -50,8 +50,8 @@ export default function SignupPage() {
       setError('✅ Check your email to confirm your account!');
       setLoading(false);
     } else {
-      // Auto-logged in, redirect to onboarding
-      router.push('/onboarding');
+      // Auto-logged in, redirect to dashboard
+      router.push('/dashboard');
     }
   };
 

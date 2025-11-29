@@ -18,23 +18,15 @@ export default function PayPage({ searchParams }: { searchParams: { [k: string]:
         <p className="text-gray-400 text-sm mb-8">
           {type === 'meeting' ? 'Finalize payment for your booked meetings.' : 'Pay a $2 test fee to unlock 500 lead credits and start outreach.'}
         </p>
-        {/* Sign-in gate: shows auth form until user authenticated */}
-        {!authedUser && (
-          <div className="mb-10">
-            <SignInGate onAuth={(u) => setAuthedUser(u)} />
-          </div>
-        )}
-        {/* Show payment only after authentication */}
-        {authedUser && (
-          <div className="mt-2">
-            <InitialPurchase meetingMode={type==='meeting'} meetings={meetings} onSuccess={() => {
-              if (typeof window !== 'undefined') {
-                alert('Payment successful! You are ready to start outreach.');
-                window.location.href = '/dashboard';
-              }
-            }} />
-          </div>
-        )}
+        {/* Show payment first, then redirect to signup after success */}
+        <div className="mt-2">
+          <InitialPurchase meetingMode={type==='meeting'} meetings={meetings} onSuccess={() => {
+            if (typeof window !== 'undefined') {
+              alert('Payment successful! Create your account to start outreach.');
+              window.location.href = '/signup';
+            }
+          }} />
+        </div>
         <div className="mt-12 text-xs text-gray-600">
           Secure payments processed via PayPal. You will only be charged now for the selected option.
         </div>

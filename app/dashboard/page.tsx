@@ -6,6 +6,7 @@ import Sidebar from '@/components/Sidebar';
 import CampaignList from '@/components/CampaignList';
 import Analytics from '@/components/Analytics';
 import { AlertCircle } from 'lucide-react';
+import { getSupabaseClient } from '@/lib/supabase';
 
 export default function Home() {
   const [activeView, setActiveView] = useState<'campaigns' | 'analytics'>('campaigns');
@@ -15,6 +16,18 @@ export default function Home() {
 
   useEffect(() => {
     loadCampaigns();
+  }, []);
+
+  useEffect(() => {
+    // Check authentication on mount
+    const checkAuth = async () => {
+      const supabase = getSupabaseClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        window.location.href = '/login';
+      }
+    };
+    checkAuth();
   }, []);
 
   const loadCampaigns = async () => {
