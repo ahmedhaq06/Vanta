@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@supabase/supabase-js": "^2.39.3",
     "date-fns": "^3.3.1",
     "lucide-react": "^0.344.0",
