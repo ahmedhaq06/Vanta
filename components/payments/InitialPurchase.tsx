@@ -45,7 +45,7 @@ export default function InitialPurchase({ meetingMode = false, meetings = 1, onS
       if (!tokenRes.ok) throw new Error(tokenJson.error || 'Token error');
 
       const instance = await window.paypal.createInstance({
-        clientToken: tokenJson.accessToken,
+        clientToken: tokenJson.clientToken,
         components: ['paypal-payments'],
         pageType: 'checkout'
       });
